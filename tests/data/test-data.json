@@ -1,0 +1,196 @@
+{
+  "signup": {
+    "test1001": {
+      "desktop": {
+        "english": {
+          "firstName": "Jordan",
+          "lastName": "Reid",
+          "password": "TestPass1234",
+          "region": "ON",
+          "heading": "Create a nesto account",
+          "submitButtonText": "Create your account"
+        },
+        "french": {
+          "firstName": "Émile",
+          "lastName": "Tremblay",
+          "password": "TestPass1234",
+          "region": "QC",
+          "heading": "Créez un compte nesto",
+          "submitButtonText": "Créez votre compte"
+        }
+      }
+    },
+    "test1002": {
+      "desktop": {
+        "english": {
+          "firstName": "Casey",
+          "lastName": "Morgan",
+          "password": "TestPass1234",
+          "region": "ON"
+        },
+        "french": {
+          "firstName": "Camille",
+          "lastName": "Gagnon",
+          "password": "TestPass1234",
+          "region": "QC"
+        }
+      }
+    },
+    "test1003": {
+      "desktop": {
+        "english": {
+          "errors": {
+            "firstNameRequired": "The field is required",
+            "lastNameRequired": "The field is required",
+            "phoneInvalid": "Invalid value",
+            "emailInvalid": "Invalid email",
+            "passwordTooShort": "Minimum of 12 letters required"
+          }
+        },
+        "french": {
+          "errors": {
+            "firstNameRequired": "Ce champ est obligatoire.",
+            "lastNameRequired": "Ce champ est obligatoire.",
+            "phoneInvalid": "Valeur invalide.",
+            "emailInvalid": "Courriel invalide",
+            "passwordTooShort": "Minimum de 12 lettres requises"
+          }
+        }
+      }
+    },
+    "test1004": {
+      "desktop": {
+        "english": {
+          "firstName": "Alex",
+          "lastName": "Nguyen",
+          "password": "TestPass1234",
+          "region": "ON",
+          "invalidEmail": "test@test@gmail.com",
+          "expectedError": "Invalid email"
+        },
+        "french": {
+          "firstName": "Félix",
+          "lastName": "Bouchard",
+          "password": "TestPass1234",
+          "region": "QC",
+          "invalidEmail": "test@domain",
+          "expectedError": "Courriel invalide"
+        }
+      }
+    },
+    "test1005": {
+      "desktop": {
+        "english": {
+          "firstName": "Riley",
+          "lastName": "Chen",
+          "region": "ON",
+          "shortPassword": "123456",
+          "expectedError": "Minimum of 12 letters required"
+        },
+        "french": {
+          "firstName": "Léa",
+          "lastName": "Roy",
+          "region": "QC",
+          "shortPassword": "12345678901",
+          "expectedError": "Minimum de 12 lettres requises"
+        }
+      }
+    },
+    "test1006": {
+      "desktop": {
+        "english": {
+          "firstName": "Sam",
+          "lastName": "Patel",
+          "region": "ON",
+          "weakPassword": "testpassword123",
+          "expectedError": "Password must contain at least one uppercase letter, one lowercase letter and one number"
+        },
+        "french": {
+          "firstName": "Olivier",
+          "lastName": "Côté",
+          "region": "QC",
+          "weakPassword": "UPPERCASEPASSWARD",
+          "expectedError": "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre"
+        }
+      }
+    },
+    "test1007": {
+      "desktop": {
+        "english": {
+          "firstName": "Taylor",
+          "lastName": "Brooks",
+          "password": "TestPass1234",
+          "region": "ON",
+          "mismatchedConfirmation": "Different1234",
+          "expectedError": "Passwords do not match"
+        },
+        "french": {
+          "firstName": "Béatrice",
+          "lastName": "Lavoie",
+          "password": "TestPass1234",
+          "region": "QC",
+          "mismatchedConfirmation": "Different1234",
+          "expectedError": "Les mots de passe ne correspondent pas"
+        }
+      }
+    },
+    "test1008": {
+      "desktop": {
+        "english": {
+          "firstName": "Morgan",
+          "lastName": "Diaz",
+          "password": "TestPass1234",
+          "region": "ON",
+          "expectedError": "Something went wrong! Please try again and if you continue to have trouble feel free to contact your advisor"
+        },
+        "french": {
+          "firstName": "Antoine",
+          "lastName": "Girard",
+          "password": "TestPass1234",
+          "region": "QC",
+          "expectedError": "Quelque chose n'a pas fonctionné! Veuillez réessayer et si vous avez toujours des problèmes, n'hésitez pas à contacter votre conseiller"
+        }
+      }
+    },
+    "test1009": {
+      "desktop": {
+        "english": {
+          "heading": "Create a nesto account",
+          "firstNamePlaceholder": "First name",
+          "lastNamePlaceholder": "Last name",
+          "phonePlaceholder": "Phone number",
+          "regionPlaceholder": "Province of purchase",
+          "emailPlaceholder": "Email",
+          "passwordPlaceholder": "Password",
+          "passwordConfirmationPlaceholder": "Confirm password",
+          "consentLabel": "By checking this box, you agree to be contacted by nesto’s partners for the purposes of offering you financial products. You agree to nesto sharing your mortgage information with its partners. You can opt-out at any time.",
+          "submitButtonText": "Create your account"
+        },
+        "french": {
+          "heading": "Créez un compte nesto",
+          "firstNamePlaceholder": "Prénom",
+          "lastNamePlaceholder": "Nom",
+          "phonePlaceholder": "Téléphone",
+          "regionPlaceholder": "Province de l'achat",
+          "emailPlaceholder": "Courriel",
+          "passwordPlaceholder": "Mot de passe",
+          "passwordConfirmationPlaceholder": "Confirmation du mot de passe",
+          "consentLabel": "En cochant cette case, vous acceptez d’être contacté par les partenaires de nesto dans le but de vous proposer des produits financiers. Vous acceptez que nesto partage vos informations de demande hypothécaire avec ses partenaires, si nous ne sommes pas en mesure de vous fournir nos services. Vous pouvez vous désinscrire à tout moment.",
+          "submitButtonText": "Créez votre compte"
+        }
+      }
+    },
+    "test1010": {
+      "desktop": {
+        "english": {
+          "switchLinkLabel": "FR",
+          "expectedPathAfterSwitch": "/fr/signup"
+        },
+        "french": {
+          "switchLinkLabel": "EN",
+          "expectedPathAfterSwitch": "/signup"
+        }
+      }
+    }
+  }
+}
