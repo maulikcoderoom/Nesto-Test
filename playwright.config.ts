@@ -32,7 +32,7 @@ export default defineConfig({
     /* Capture a screenshot and video only for failed tests. */
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    headless: false,
+    headless: !!process.env.CI,
   },
 
   /* One project per language-device-browser combination, see configs/projects/. */
