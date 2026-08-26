@@ -45,8 +45,7 @@ export abstract class BaseSignupActions extends BaseActions {
 
   /**
    * The field's own error message, resolved via its aria-describedby —
-   * not a page-wide text search, so it can't be confused with another
-   * field showing identical copy (e.g. two required-field errors).
+   * not a page-wide text search,
    */
   async errorFor(field: Locator): Promise<Locator> {
     const describedBy = await field.getAttribute('aria-describedby');

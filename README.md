@@ -2,6 +2,16 @@
 
 Playwright + TypeScript end-to-end tests for [app.qa.nesto.ca](https://app.qa.nesto.ca) (QA by default). This README covers day-to-day usage for someone new to the repo.
 
+
+## Assumptions
+
+- This automation architecture is built so the nesto web application can be tested across different viewports (desktop today; the `src/actions` and `src/locators` split already reserves a `desktop` folder for viewport-specific overrides) and both English and French locales.
+- Common locators and actions live in base classes (`src/actions/base/`, `src/locators/base/`) and are inherited/extended by viewport-specific implementations (`src/actions/desktop/`, `src/locators/desktop/`), so a single set of selectors and interactions is shared across variants instead of duplicated.
+- Language is not handled via environment variables — it's modeled as a separate Playwright **project** per language/device/browser combo (`configs/projects/en-desktop-chrome.config.ts`, `fr-desktop-chrome.config.ts`), and tests read the active locale from `projectContext` at runtime.
+- Tests are tagged so specific categories/scenarios can be filtered and run independently, e.g. `npx playwright test --grep @api`.
+- The suite targets QA (`app.qa.nesto.ca`) by default; `BASE_URL` can override this to point at other environments (dev/staging).
+
+
 ## 1. Install
 
 Prerequisites: Node.js (LTS) and npm.
@@ -28,11 +38,11 @@ npx playwright test tests/specs/signup.spec.ts --project=en-desktop-chrome
 
 # French only
 npx playwright test tests/specs/signup.spec.ts --project=fr-desktop-chrome
+
+
+# Check results
+npx playwright show-report
 ```
-
-Every test also runs headed (a real Chrome window opens) by default — see `playwright.config.ts` if you want to change that locally.
-
-Other useful ways to run it:
 
 ```bash
 # Run the whole suite (all spec files, both languages)
@@ -48,21 +58,7 @@ BASE_URL=https://app.dev.nesto.ca npx playwright test tests/specs/signup.spec.ts
 npx playwright test tests/specs/signup.spec.ts --project=en-desktop-chrome --debug
 ```
 
-## 3. Check results
-
-- **While a run is in progress**: the terminal prints a live pass/fail line per test (the `list` reporter).
-- **After a run**: an HTML report is generated automatically. Open the most recent one with:
-
-  ```bash
-  npm run test:report
-  ```
-
-  It opens in your browser and shows every test's status, and for any failure: the error, a screenshot, a video, and (on CI retries) a trace you can step through.
-
-- **Raw output**: `test-results/` holds the raw per-test artifacts (screenshots, videos) behind the HTML report; `playwright-report/` is the report itself. Both are git-ignored — don't hand-edit them, they're regenerated every run.
-- **Suite notes**: `tests/specs/signup.info.md` documents the approved test cases, known assumptions, and any bugs found while building the suite.
-
-## 4. Other commands
+## 3. Other commands
 
 ```bash
 npm run typecheck      # tsc --noEmit — must be clean
@@ -72,15 +68,6 @@ npm run format         # prettier --write . — reformats the repo
 npm run format:check   # prettier --check . — verifies formatting without changing files
 ```
 
-All four should be clean before considering a change done.
-
-Other Playwright commands you'll likely use while writing new tests:
-
-```bash
-npx playwright codegen https://app.qa.nesto.ca/signup   # record actions into a test as you click through the page
-npx playwright show-report                              # same as npm run test:report
-npx playwright install                                   # (re)install browser binaries after a Playwright upgrade
-```
 
 ## Project structure at a glance
 
@@ -92,4 +79,8 @@ tests/data/         test data (tests/data/test-data.json)
 tests/helpers/      one-time global setup/teardown
 ```
 
-New suites follow the same layout: a spec file plus a matching `.info.md` under `tests/specs/`, page objects (locators + actions) under `src/`, and test data under `tests/data/`.
+## Bugs found
+
+- **Duplicate email doesn't say so.** Submitting an already-registered email returns `400 {"error":"bad format","description":"error creating account"}`, and the UI shows a generic "Something went wrong! Please try again..." message rather than anything indicating the email is taken. This may be intentional, but it's a poor user experience.
+
+- **Burger menu fires an unnecessary `/api/account` call on mobile.** In the mobile viewport, clicking the burger icon triggers a `GET https://app.qa.nesto.ca/api/account` request. This call should only fire for a logged-in user, but it's being triggered from the signup page, where no user session exists.
